@@ -1,0 +1,42 @@
+<div class="wrapper">
+  <div class="selectcontainer">    
+    <form>
+    <mat-form-field appearance="fill">
+      <mat-label>Album</mat-label>
+      <mat-select [(ngModel)]="albumSelected" name="first">
+        <mat-option *ngFor="let album of listAlbum" [value]="album.id">
+          {{ album.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="albumselected">
+      You have selected the album: {{ albumSelected }}
+    </div>
+
+  </form>
+  <form [formGroup]="patientCategory">
+    <mat-form-field class="full-width">
+      <mat-select placeholder="Category" formControlName="patientCategory1">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let category of patientCategories" [value]="category">
+          {{category.name}} - {{category.description}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <p>{{patientCategory.get('patientCategory1')!.value | json}}</p>
+</form>
+<form [formGroup]="corporateForm">
+    <mat-form-field class="full-width">
+      <mat-select placeholder="Category" formControlName="corporateUserGroupNames">
+        <mat-option *ngFor="let category of listAlbum" [value]="category">
+          {{category.userId}} - {{category.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <p>{{corporateForm.get('corporateUserGroupNames')!.value | json}}</p>
+    </form>
+    
+  </div>
+</div>
